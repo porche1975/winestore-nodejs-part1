@@ -4,13 +4,7 @@
  */
 
 var mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/winestore');
-
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error: '));
-db.once('open', function callback() {
-    console.log('connected to monogodb winestore db')
-});
+var db = require('./db')
 
 var express = require('express')
   , routes = require('./routes')
@@ -36,8 +30,8 @@ http.createServer(app).listen(app.get('port'), function(){
 
 process.on('exit', function() {
     console.log('process exit')
-    mongoose.disconnect(function() {
-        console.log('mongo connection closed')
+    db.connection.disconnect(function() {
+        console.log('mongo connection closed');
     });
 });
 

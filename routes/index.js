@@ -3,15 +3,6 @@
  * GET home page.
  */
 
-var Task = require('../models/tasks')
-
-exports.tasks = function(req, res) {
-    Task.find({}, function(err, docs) {
-        if (err) throw err;
-        res.json(docs)
-    });
-};
-
 var Wine = require('../models/wine')
 
 exports.wines = function(req, res) {
